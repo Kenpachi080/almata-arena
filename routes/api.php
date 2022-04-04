@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController as Articles;
 use App\Http\Controllers\PortfolioController as PortfolioController;
+use App\Http\Controllers\QuestionController as QuestionController;
+use App\Http\Controllers\ApiController as ApiController;
 
 
 /*
@@ -17,11 +19,18 @@ use App\Http\Controllers\PortfolioController as PortfolioController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::get('/article', [Articles::class, 'viewArticle']);
 Route::get('/comment', [Articles::class, 'viewComment']);
 Route::get('/portfolio', [PortfolioController::class, 'view']);
 Route::post('/comment', [Articles::class, 'commentAdd']);
+Route::get('/mainquestion', [QuestionController::class, 'main']);
+Route::get('/childquestion', [QuestionController::class, 'child']);
+
+Route::post('/callback', [ApiController::class, 'callback']);
+
+Route::group(['prefix' => 'vacancy'], function () {
+    Route::get('/type', [ApiController::class, 'typejobs']);
+    Route::get('/simplejob', [ApiController::class, 'simplejob']);
+    Route::post('/job', [ApiController::class, 'job']);
+});
