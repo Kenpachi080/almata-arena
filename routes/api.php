@@ -23,6 +23,7 @@ use App\Http\Controllers\ApiController as ApiController;
 Route::get('/article', [Articles::class, 'viewArticle']);
 Route::get('/comment', [Articles::class, 'viewComment']);
 Route::get('/portfolio', [PortfolioController::class, 'view']);
+Route::get('/categoryes', [PortfolioController::class, 'categoryes']);
 Route::post('/comment', [Articles::class, 'commentAdd']);
 Route::get('/mainquestion', [QuestionController::class, 'main']);
 Route::get('/childquestion', [QuestionController::class, 'child']);
@@ -34,3 +35,5 @@ Route::group(['prefix' => 'vacancy'], function () {
     Route::get('/simplejob', [ApiController::class, 'simplejob']);
     Route::post('/job', [ApiController::class, 'job']);
 });
+
+Route::get('/reviews', [ApiController::class, 'reviews']);

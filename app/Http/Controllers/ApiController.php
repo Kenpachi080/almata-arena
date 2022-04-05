@@ -8,11 +8,18 @@ use App\Models\CallBack;
 use App\Models\Job;
 use App\Models\JobSkills;
 use App\Models\mostjobs;
+use App\Models\Review;
 use App\Models\TypeJob;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
+    public function __construct()
+    {
+        $this->url = env('APP_URL', 'http://127.0.0.1:8000');
+        $this->url = $this->url.'/storage/';
+    }
+
     public function callback(CallBackRequest $request)
     {
         $callback = CallBack::create([
@@ -57,5 +64,15 @@ class ApiController extends Controller
         return response([
             'message' => 'Вакансия успешно подана'
         ], 201);
+    }
+
+    public function reviews()
+    {
+        $reviews = Review::all();
+        foreach ($reviews as $model) {
+            $model->image = $this->url.$model->image;
+        }
+
+        return response($reviews, 200);
     }
 }
