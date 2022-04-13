@@ -27,6 +27,7 @@ class CallBackRequest extends FormRequest
             'name' => 'required',
             'contacts' => 'required',
             'task' => 'required',
+            'from' => 'required'
         ];
     }
 }

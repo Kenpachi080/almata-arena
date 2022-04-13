@@ -19,9 +19,13 @@ class PortfolioController extends Controller
     public function view()
     {
         $porfolio = Portfolios::all();
-        foreach ($porfolio as $value) {
-            $value->avatar = $this->url . '/storage/' . $value->avatar;
-            $value->image = $this->url . '/storage/' . $value->image;
+        foreach ($porfolio as $images) {
+            $images->avatar = $this->url . '/storage/' . $images->avatar;
+            $image = json_decode($images->image);
+            foreach ($image as $key => $value) {
+                $image[$key] = $this->url . '/storage/' . $value;
+            }
+            $images->image = $image;
         }
         return response($porfolio, 200);
     }

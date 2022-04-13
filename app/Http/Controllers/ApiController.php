@@ -25,7 +25,8 @@ class ApiController extends Controller
         $callback = CallBack::create([
             'name' => $request->name,
             'contacts' => $request->contacts,
-            'task' => $request->task
+            'task' => $request->task,
+            'form' => $request->from
         ]);
         return response([
             'message' => 'Заявка успешно создана'
