@@ -21,7 +21,15 @@ class User extends \TCG\Voyager\Models\User
         'name',
         'email',
         'password',
+        'fio',
+        'phone',
+        'api_token',
+        'city',
+        'birthday',
+        'area',
+        'address'
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.

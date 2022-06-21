@@ -1,0 +1,437 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Aerolit документация АПИ",
+        "description": "Документация",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Регистрация",
+                "description": "Регистрация",
+                "operationId": "authRegister",
+                "requestBody": {
+                    "description": "Регистрация",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "phone, password, email"
+                                ],
+                                "properties": {
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "+7708"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "123"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "testemail@mail.ru"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Возврощается полная информация про пользователя, и его токен для дальнейшей работы с юзером",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "type": "object",
+                                            "example": {
+                                                "name": "+7712308",
+                                                "email": "test1231email@mail.ru",
+                                                "updated_at": "2022-04-20T19:53:52.000000Z",
+                                                "created_at": "2022-04-20T19:53:52.000000Z",
+                                                "id": 10,
+                                                "api_token": "18|TuQoXj84z5IxclUeRK89bSS4839sQfJ8KsQRVRVO"
+                                            }
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "18|TuQoXj84z5IxclUeRK89bSS4839sQfJ8KsQRVRVO"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Авторизация",
+                "description": "Авторизация по АПИ токену",
+                "operationId": "authLogin",
+                "requestBody": {
+                    "description": "Апи Токен",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "phone, password"
+                                ],
+                                "properties": {
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "+7708"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Возврощается полная информация про пользователя, и его токен для дальнейшей работы с юзером",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "type": "object",
+                                            "example": []
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "FKOhXAr6Xhx2e6fMdaKZbTOCxCBwLuJDO3j8fYjRoDG9XoAYKQUSPzayU4BM"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/change": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Поменять данные клиента",
+                "description": "Поменять данные клиента",
+                "operationId": "authChange",
+                "requestBody": {
+                    "description": "Апи Токен",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "fio, email, city, area, birthday, phone, address"
+                                ],
+                                "properties": {
+                                    "fio": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "123"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "321"
+                                    },
+                                    "area": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "321"
+                                    },
+                                    "birthday": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "321"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "321"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "321"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "321"
+                                    },
+                                    "api_token": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "FKOhXAr6Xhx2e6fMdaKZbTOCxCBwLuJDO3j8fYjRoDG9XoAYKQUSPzayU4BM"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "CallBack с статусом",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "type": "object",
+                                            "example": []
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Данные успешно были изменены"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/view": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Посмотреть данные",
+                "description": "Посмотреть данные",
+                "operationId": "viewauth",
+                "requestBody": {
+                    "description": "Апи Токен",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "api_token"
+                                ],
+                                "properties": {
+                                    "api_token": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "6WxjM0XOruMPWPnJKEAPHNIMwNpe0bAU7iGWswoKrQDuXC5MNUmuJh1Y4GuG"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "CallBack с данными",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/": {
+            "get": {
+                "tags": [
+                    "view"
+                ],
+                "summary": "Информация про сайт",
+                "operationId": "viewIndex",
+                "responses": {
+                    "200": {
+                        "description": "Возврощается полная информация про сайт"
+                    }
+                }
+            }
+        },
+        "/api/gallery": {
+            "get": {
+                "tags": [
+                    "view"
+                ],
+                "summary": "Информация про сайт",
+                "operationId": "viewgalerry",
+                "responses": {
+                    "200": {
+                        "description": "Возврощается полная информация про сайт"
+                    }
+                }
+            }
+        },
+        "/api/items/": {
+            "post": {
+                "tags": [
+                    "items"
+                ],
+                "summary": "Вытащить все товары",
+                "description": "Вытащить все товары",
+                "operationId": "viewitem",
+                "requestBody": {
+                    "description": "Апи Токен",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name,  category, popular"
+                                ],
+                                "properties": {
+                                    "category": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    },
+                                    "popular": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Урна"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "CallBack"
+                    }
+                }
+            }
+        },
+        "/api/items/single": {
+            "post": {
+                "tags": [
+                    "items"
+                ],
+                "summary": "Вытащить отдельный товар",
+                "description": "Вытащить отдельный товар",
+                "operationId": "singleitem",
+                "requestBody": {
+                    "description": "Апи Токен",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "CallBack"
+                    }
+                }
+            }
+        },
+        "/api/review/": {
+            "get": {
+                "tags": [
+                    "review"
+                ],
+                "summary": "Отзывы показы",
+                "operationId": "reviewindex",
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "review"
+                ],
+                "summary": "Заполнить отзыв",
+                "description": "Заполнить отзыв",
+                "operationId": "createreview",
+                "requestBody": {
+                    "description": "Апи Токен",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "api_token, start, content"
+                                ],
+                                "properties": {
+                                    "api_token": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Zx9HfKnJ1DZETiScaA0nU8Xm5E2yTPJGHDAXSsfdgfW8ioc6Pxzof3FotPQQ"
+                                    },
+                                    "start": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    },
+                                    "content": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "CallBack"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +17,25 @@ use App\Http\Controllers\IndexController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/title', [IndexController::class, 'title']);
-Route::get('/about', [IndexController::class, 'about']);
-Route::get('/news', [IndexController::class, 'news']);
-Route::get('/review', [IndexController::class, 'review']);
-Route::get('/service', [IndexController::class, 'service']);
-Route::get('/service/{id}', [IndexController::class, 'singleservice']);
-Route::get('/project', [IndexController::class, 'project']);
-Route::get('/project/{id}', [IndexController::class, 'singleporject']);
+
+
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+});
+
+Route::group(['prefix' => 'auth', 'middleware' => "api_auth"], function () {
+    Route::post('/change', [AuthController::class, 'change'])->name('change');
+    Route::post('/view', [AuthController::class, 'view'])->name('authview');
+});
+Route::group(['prefix' => 'review'], function () {
+    Route::post('/', [ReviewController::class, 'create'])->middleware('api_auth');
+    Route::get('/', [ReviewController::class, 'view']);
+});
+Route::get('/', [IndexController::class, 'index']);
+Route::get('/gallery', [IndexController::class, 'gallery']);
+
+Route::group(['prefix' => 'items'], function () {
+    Route::post('/', [ItemController::class, 'view']);
+    Route::post('/single', [ItemController::class, 'singleview']);
+});
